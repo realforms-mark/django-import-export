@@ -9,7 +9,6 @@ from django.utils.dateparse import parse_duration
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 import json
-import ast
 
 
 class Widget(object):
@@ -271,13 +270,14 @@ class JSONWidget(Widget):
     """
 
     def clean(self, value, row=None, *args, **kwargs):
-        val = super(JSONWidget, self).clean(value)
-        if val:
-            return ast.literal_eval(val)
+        if value is None:
+            return None
+        return json.loads(value)
 
     def render(self, value, obj=None):
-        if value:
-            return json.dumps(value)
+        if value in (None, {}, ):
+            return None
+        return json.dumps(value)
 
 
 class ForeignKeyWidget(Widget):
