@@ -2,11 +2,10 @@ Changelog
 =========
 
 
-1.1.1 (unreleased)
+1.1.1 (2019-01-08)
 ------------------
 
-- Nothing changed yet.
-
+- fix: JsonWidget for jsonb fields (Issue #285)
 
 1.1.0 (2018-10-02)
 ------------------
